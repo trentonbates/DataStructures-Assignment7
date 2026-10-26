@@ -1,0 +1,27 @@
+Why is a tree appropriate for the doctor structure?
+When might a software engineer use preorder, inorder, or postorder traversals?
+How do heaps help simulate real-time systems liek emergency intake?
+
+I think a tree makes sense for the doctor structure because a hospital is
+basically one big chain of command. Every doctor reports to one manager, and
+some of them have doctors under them. In my DoctorTree, Dr. Croft is the root,
+and Dr. Phan and Dr. Goldsmith branch off below. Since every doctor has just
+one path back to the top, it's easy to see who reports to who. I also added
+checks in insert for duplicates, empty names, and managers that don't exist,
+so the hierarchy doesn't get messed up.
+
+Each traversal is useful for something different. Preorder visits a manager
+before their team, so it works well for printing out an org chart. Inorder
+goes left, then the node, then right, which gives sorted data if you're using
+a binary search tree. Postorder visits the subordinates first and the manager
+last, which would help for something like deleting a tree or adding up a
+department's workload before reporting it upward. In my program, postorder
+prints Dr. Morgan and Dr. Carson before Dr. Phan, and Dr. Croft comes last.
+
+Heaps are great for emergency intake because the sickest patient needs to be
+seen first, no matter when they showed up. My MinHeap sorts Patient objects by
+urgency, where a lower number means higher priority. Insert and remove_min run
+in O(log n) time, and peek is O(1). In my test, Taylor (urgency 1) came in
+after Jordan (urgency 3) but still got served first. With a regular list,
+you'd have to keep sorting or searching every time, but a heap stays fast even
+as more patients keep coming in.
